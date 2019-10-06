@@ -24,8 +24,7 @@ describe('Authentication - ', () => {
       firstName: user.firstName,
       lastName: user.lastName,
       email,
-      birthYear: user.birthYear,
-      student: user.student,
+      admin: user.admin,
     });
 
     expect(res.body.user.passwordDigest).toEqual(undefined);

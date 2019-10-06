@@ -13,8 +13,7 @@ describe('currentUser', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
     const validToken = jwt.sign(

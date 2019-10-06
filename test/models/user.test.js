@@ -13,8 +13,7 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
     const usersAfter = await User.all();
@@ -26,16 +25,15 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
     const duplicateUser = await User.create({
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+
+      admin: true,
       password: 'password',
     });
 
@@ -50,8 +48,7 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: '  ElowYn@example.com ',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
 
@@ -70,8 +67,7 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
     const updatedUser = await User.update({
@@ -79,16 +75,14 @@ describe('User', () => {
       firstName: 'Freyja',
       lastName: 'Puppy',
       email: 'freyja@example.com',
-      birthYear: 2016,
-      student: false,
+      admin: false,
       password: 'puppy password',
     });
 
     expect(updatedUser.firstName).toBe('Freyja');
     expect(updatedUser.lastName).toBe('Puppy');
     expect(updatedUser.email).toBe('freyja@example.com');
-    expect(updatedUser.birthYear).toBe(2016);
-    expect(updatedUser.student).toBe(false);
+    expect(updatedUser.admin).toBe(false);
     expect(updatedUser.passwordDigest).not.toBe(originalUser.passwordDigest);
   });
 
@@ -97,16 +91,14 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
     const secondUser = await User.create({
       firstName: 'Freyja',
       lastName: 'Puppy',
       email: 'freyja@example.com',
-      birthYear: 2016,
-      student: false,
+      admin: false,
       password: 'password',
     });
     const updateSecondUser = await User.update({
@@ -114,8 +106,7 @@ describe('User', () => {
       firstName: 'Freyja',
       lastName: 'Puppy',
       email: firstUser.email,
-      birthYear: 2016,
-      student: false,
+      admin: false,
       password: 'password',
     });
 
@@ -129,8 +120,7 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
 
@@ -139,8 +129,7 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
 
@@ -152,8 +141,8 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+
+      admin: true,
       password: 'password',
     });
 
@@ -161,8 +150,7 @@ describe('User', () => {
     expect(foundUser.firstName).toEqual('Elowyn');
     expect(foundUser.lastName).toEqual('Platzer Bartel');
     expect(foundUser.email).toEqual('elowyn@example.com');
-    expect(foundUser.birthYear).toEqual(2015);
-    expect(foundUser.student).toEqual(true);
+    expect(foundUser.admin).toEqual(true);
   });
 
   it('can be found by property', async () => {
@@ -170,8 +158,7 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-      birthYear: 2015,
-      student: true,
+      admin: true,
       password: 'password',
     });
 
@@ -179,35 +166,25 @@ describe('User', () => {
     expect(foundUserByEmail.firstName).toEqual('Elowyn');
     expect(foundUserByEmail.lastName).toEqual('Platzer Bartel');
     expect(foundUserByEmail.email).toEqual('elowyn@example.com');
-    expect(foundUserByEmail.birthYear).toEqual(2015);
-    expect(foundUserByEmail.student).toEqual(true);
+    expect(foundUserByEmail.admin).toEqual(true);
 
     const foundUserByFirstName = await User.findBy({ firstName: 'Elowyn' });
     expect(foundUserByFirstName.firstName).toEqual('Elowyn');
     expect(foundUserByFirstName.lastName).toEqual('Platzer Bartel');
     expect(foundUserByFirstName.email).toEqual('elowyn@example.com');
-    expect(foundUserByFirstName.birthYear).toEqual(2015);
-    expect(foundUserByFirstName.student).toEqual(true);
+    expect(foundUserByFirstName.admin).toEqual(true);
 
     const foundUserByLastName = await User.findBy({ lastName: 'Platzer Bartel' });
     expect(foundUserByLastName.firstName).toEqual('Elowyn');
     expect(foundUserByLastName.lastName).toEqual('Platzer Bartel');
     expect(foundUserByLastName.email).toEqual('elowyn@example.com');
-    expect(foundUserByLastName.birthYear).toEqual(2015);
-    expect(foundUserByLastName.student).toEqual(true);
+    expect(foundUserByLastName.admin).toEqual(true);
 
-    const foundUserByBirthYear = await User.findBy({ birthYear: '2015' });
-    expect(foundUserByBirthYear.firstName).toEqual('Elowyn');
-    expect(foundUserByBirthYear.lastName).toEqual('Platzer Bartel');
-    expect(foundUserByBirthYear.email).toEqual('elowyn@example.com');
-    expect(foundUserByBirthYear.birthYear).toEqual(2015);
-    expect(foundUserByBirthYear.student).toEqual(true);
 
-    const foundUserByStudent = await User.findBy({ student: true });
-    expect(foundUserByStudent.firstName).toEqual('Elowyn');
-    expect(foundUserByStudent.lastName).toEqual('Platzer Bartel');
-    expect(foundUserByStudent.email).toEqual('elowyn@example.com');
-    expect(foundUserByStudent.birthYear).toEqual(2015);
-    expect(foundUserByStudent.student).toEqual(true);
+    const foundUserByadmin = await User.findBy({ admin: true });
+    expect(foundUserByadmin.firstName).toEqual('Elowyn');
+    expect(foundUserByadmin.lastName).toEqual('Platzer Bartel');
+    expect(foundUserByadmin.email).toEqual('elowyn@example.com');
+    expect(foundUserByadmin.admin).toEqual(true);
   });
 });

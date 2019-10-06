@@ -11,8 +11,7 @@ clearDB().then(async () => {
     firstName: 'Beyoncé',
     lastName: 'Knowles-Carter',
     email: 'beyonce@example.com',
-    birthYear: 1981,
-    student: false,
+    admin: false,
     password: 'password',
   });
 

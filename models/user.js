@@ -42,16 +42,14 @@ exports.create = async properties => {
       "firstName",
       "lastName",
       "email",
-      "birthYear",
-      "student",
+      "admin",
       "passwordDigest"
-    ) values ($1, $2, $3, $4, $5, $6) returning *`,
+    ) values ($1, $2, $3, $4, $5) returning *`,
     [
       properties.firstName,
       properties.lastName,
       formatEmail(properties.email),
-      properties.birthYear,
-      properties.student,
+      properties.admin,
       passwordDigest,
     ],
   )).rows[0];
@@ -78,11 +76,8 @@ exports.findBy = async property => {
     case 'email':
       findByQuery = 'SELECT * FROM "users" WHERE "email" = $1 LIMIT 1';
       break;
-    case 'birthYear':
-      findByQuery = 'SELECT * FROM "users" WHERE "birthYear" = $1 LIMIT 1';
-      break;
-    case 'student':
-      findByQuery = 'SELECT * FROM "users" WHERE "student" = $1 LIMIT 1';
+    case 'admin':
+      findByQuery = 'SELECT * FROM "users" WHERE "admin" = $1 LIMIT 1';
       break;
     default:
       break;
@@ -113,15 +108,13 @@ exports.update = async newProperties => {
     "firstName"=$1,
     "lastName"=$2,
     "email"=$3,
-    "birthYear"=$4,
-    "student"=$5,
-    "passwordDigest"=$6 WHERE id=$7 RETURNING *`,
+    "admin"=$4,
+    "passwordDigest"=$5 WHERE id=$6 RETURNING *`,
     [
       properties.firstName,
       properties.lastName,
       formatEmail(properties.email),
-      properties.birthYear,
-      properties.student,
+      properties.admin,
       properties.passwordDigest,
       properties.id,
     ],

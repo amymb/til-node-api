@@ -15,7 +15,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "report": "nyc report --reporter=lcov",
     "start": "node ./bin/www",
-    "test": "mocha --recursive && (yarn lint || npm lint)"
+    "test": "mocha --recursive && (npm run lint)"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,8 +26,7 @@
     "jsonwebtoken": "^8.0.1",
     "morgan": "^1.9.1",
     "pg": "^7.3.0",
-    "postgrator": "^2.10.2",
-    "yarn": "^1.10.1"
+    "postgrator": "^2.10.2"
   },
   "devDependencies": {
     "dotenv": "^4.0.0",

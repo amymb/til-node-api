@@ -4,8 +4,7 @@ module.exports = user => {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    birthYear: user.birthYear,
-    student: user.student,
+    admin: user.admin,
   };
   return serialized;
 };

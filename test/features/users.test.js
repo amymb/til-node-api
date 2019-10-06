@@ -16,8 +16,7 @@ describe('Users', () => {
         firstName: 'Elowyn',
         lastName: 'Platzer Bartel',
         email: 'elowyn@example.com',
-        birthYear: 2015,
-        student: true,
+        admin: true,
         password: 'password',
       })
       .expect(200);
@@ -27,8 +26,7 @@ describe('Users', () => {
     expect(res.body.user.firstName).toEqual('Elowyn');
     expect(res.body.user.lastName).toEqual('Platzer Bartel');
     expect(res.body.user.email).toEqual('elowyn@example.com');
-    expect(res.body.user.birthYear).toEqual(2015);
-    expect(res.body.user.student).toEqual(true);
+    expect(res.body.user.admin).toEqual(true);
 
     expect(res.body.user.passwordDigest).toEqual(undefined);
     expect(res.body.user.createdAt).toEqual(undefined);
@@ -40,8 +38,7 @@ describe('Users', () => {
         firstName: 'Elowyn',
         lastName: 'Platzer Bartel',
         email: 'elowyn@example.com',
-        birthYear: 2015,
-        student: true,
+        admin: true,
         password: 'password',
       })
       .expect(200);
@@ -75,10 +72,9 @@ describe('Users', () => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      birthYear: user.birthYear,
-      student: user.student,
+      admin: user.admin,
     });
-    expect(newUser.student).toEqual(true);
+    expect(newUser.admin).toEqual(true);
 
     expect(newUser.passwordDigest).toEqual(undefined);
     expect(newUser.createdAt).toEqual(undefined);
@@ -115,10 +111,9 @@ describe('Users', () => {
       firstName: showUser.firstName,
       lastName: showUser.lastName,
       email: showUser.email,
-      birthYear: showUser.birthYear,
-      student: showUser.student,
+      admin: showUser.admin,
     });
-    expect(showUser.student).toEqual(true);
+    expect(showUser.admin).toEqual(true);
 
     expect(showUser.passwordDigest).toEqual(undefined);
     expect(showUser.createdAt).toEqual(undefined);
@@ -137,8 +132,7 @@ describe('Users', () => {
         firstName: 'Elowyn',
         lastName: 'Platzer Bartel',
         email: 'elowyn@example.com',
-        birthYear: 2015,
-        student: true,
+        admin: true,
         password: 'password',
       })
       .expect(404);
@@ -156,8 +150,7 @@ describe('Users', () => {
     expect(resSelf.body.user.firstName).toBe('Elowyn');
     expect(resSelf.body.user.lastName).toBe(self.lastName);
     expect(resSelf.body.user.email).toBe(self.email);
-    expect(resSelf.body.user.birthYear).toBe(self.birthYear);
-    expect(resSelf.body.user.student).toBe(self.student);
+    expect(resSelf.body.user.admin).toBe(self.admin);
   });
 
   it('can update to with same pre-existing email address', async () => {
@@ -174,11 +167,10 @@ describe('Users', () => {
 
     expect(res.body.user).toEqual({
       id: user.id,
-      birthYear: user.birthYear,
       email: user.email,
       firstName: 'Elowyn',
       lastName: user.lastName,
-      student: user.student,
+      admin: user.admin,
     });
   });
 

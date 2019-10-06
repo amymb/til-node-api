@@ -6,11 +6,6 @@ const randomDigits = () => {
   return (pad + num).slice(-4);
 };
 
-const randomYear = () => {
-  const min = 1900;
-  const max = new Date().getFullYear();
-  return Math.floor(Math.random() * (max - min)) + min;
-};
 
 exports.createUser = async overrides => {
   const randomNumber = randomDigits();
@@ -19,8 +14,7 @@ exports.createUser = async overrides => {
     firstName: `Elowyn${randomNumber}`,
     lastName: `Platzer Bartel${randomNumber}`,
     email: `elowyn${randomNumber}@example.com`,
-    birthYear: randomYear(),
-    student: true,
+    admin: true,
     password: 'password',
   };
 
