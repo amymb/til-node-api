@@ -2,7 +2,6 @@
 
 ### Welcome
 * `curl http://localhost:3001/`
-* `curl https://exp-starter-api.herokuapp.com/`
 
 ### Sign up
 * `curl -X POST -H "Content-Type: application/json" -d '{"email":"elowyn@example.com", "password": "password", "firstName": "Elowyn", "lastName": "Platzer Bartel", "admin": "true"}' http://localhost:3001/users`
