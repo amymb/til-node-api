@@ -26,7 +26,8 @@
     "jsonwebtoken": "^8.0.1",
     "morgan": "^1.9.1",
     "pg": "^7.3.0",
-    "postgrator": "^2.10.2"
+    "postgrator": "^2.10.2",
+    "sequelize": "^5.19.4"
   },
   "devDependencies": {
     "dotenv": "^4.0.0",
