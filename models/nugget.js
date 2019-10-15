@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Nugget.associate = function(models) {
-    Nugget.belongsTo(models.User, {foreignKey: 'userId', as: 'user' })
+    Nugget.belongsTo(models.User, { foreignKey: 'UserId', as: 'user' })
   };
   return Nugget;
 };
