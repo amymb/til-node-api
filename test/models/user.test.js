@@ -32,7 +32,6 @@ describe('User', () => {
       firstName: 'Elowyn',
       lastName: 'Platzer Bartel',
       email: 'elowyn@example.com',
-
       admin: true,
       password: 'password',
     });
