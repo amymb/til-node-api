@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 require('../helpers/testSetup');
 
 const currentUser = require('../../lib/currentUser');
-const User = require('../../models/user');
+const User = require('../../models').User;
 const userSerializer = require('../../serializers/user');
 
 describe('currentUser', () => {

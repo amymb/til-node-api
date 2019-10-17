@@ -7,8 +7,8 @@
   },
   "scripts": {
     "coverage": "nyc mocha --recursive",
-    "db:migrate": "node postgrator.js",
-    "db:migrate:test": "NODE_ENV=test node postgrator.js",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:test": "NODE_ENV=test sequelize db:migrate",
     "db:seed": "for file in ./seeds/*.js; do node $file; done",
     "db:seed:windows": "for %f in (./seeds/*) do node ./seeds/%f",
     "db:createMigration": "node ./lib/createMigrations.js",

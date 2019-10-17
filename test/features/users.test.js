@@ -15,7 +15,7 @@ describe('Users', () => {
       .send({
         firstName: 'Elowyn',
         lastName: 'Platzer Bartel',
-        email: 'elowyn@example.com',
+        email: 'elowyn123@example.com',
         admin: true,
         password: 'password',
       })
@@ -25,7 +25,7 @@ describe('Users', () => {
     expect(res.body.user.id).not.toBe(undefined);
     expect(res.body.user.firstName).toEqual('Elowyn');
     expect(res.body.user.lastName).toEqual('Platzer Bartel');
-    expect(res.body.user.email).toEqual('elowyn@example.com');
+    expect(res.body.user.email).toEqual('elowyn123@example.com');
     expect(res.body.user.admin).toEqual(true);
 
     expect(res.body.user.passwordDigest).toEqual(undefined);
@@ -37,15 +37,15 @@ describe('Users', () => {
       .send({
         firstName: 'Elowyn',
         lastName: 'Platzer Bartel',
-        email: 'elowyn@example.com',
+        email: 'elowyn123@example.com',
         admin: true,
         password: 'password',
       })
-      .expect(200);
+      .expect(500);
 
     expect(duplicateEmailRes.body.jwt).toBe(undefined);
-    expect(duplicateEmailRes.body.user.id).toBe(undefined);
-    expect(duplicateEmailRes.body.user.errors).toEqual(['Email already taken']);
+    expect(duplicateEmailRes.body.user).toBe(undefined);
+    expect(duplicateEmailRes.body.message).toEqual('Email taken');
   });
 
   it('can be listed for a logged in user only', async () => {
@@ -185,13 +185,13 @@ describe('Users', () => {
       .send({
         email: firstUser.email,
       })
-      .expect(200);
+      .expect(500);
 
-    expect(res.body.user).toEqual({ errors: ['Email already taken'] });
+    expect(res.body.message).toEqual('Email taken' );
   });
 
   it('returns logged in user details at /me with valid jwt', async () => {
-    const user = await createUser({ email: 'user1@example.com ' });
+    const user = await createUser({ email: 'user1@example.com' });
     const token = jwt.sign({ currentUserId: user.id }, process.env.JWT_SECRET);
 
     const resInvalid = await request(app)
